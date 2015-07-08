@@ -1,0 +1,28 @@
+/*
+ * main.cpp
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: Christian
+ */
+
+
+#include <QtGui>
+
+int main(int argc, char *argv[]){
+	QApplication app(argc, argv);
+	QWidget window;
+	QPushButton button;
+	QHBoxLayout *layout = new QHBoxLayout();
+	QLabel *label = new QLabel(QApplication::translate("windowlayout","IP Address:"));
+	QLineEdit *lineEdit = new QLineEdit();
+
+	layout->addWidget(label);
+	layout->addWidget(lineEdit);
+	window.setLayout(layout);
+	window.resize(800,600);
+	window.show();
+	window.setWindowTitle(QApplication::translate("toplevel","Quadrotor Control Panel v0.1"));
+	app.exec();
+
+}
+
