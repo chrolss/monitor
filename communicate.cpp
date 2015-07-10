@@ -14,6 +14,7 @@ Communicate::Communicate(QWidget *parent)
     : QWidget(parent)
 {
 
+
   QPushButton *plus = new QPushButton("+", this);
   plus->setGeometry(50, 40, 75, 30);
 
@@ -56,8 +57,7 @@ void Communicate::sendMsg()
 	std::copy(str.begin(), str.end(),msg);
 	msg[str.size()] = '\0';
 	comLink.sendBBB(msg);
-	printf("Sending a message to BBB: ");
-	std::cout << str << std::endl;
+	printf("Sending a message to BBB: %s \n", msg);
 	delete[] msg;
 }
 

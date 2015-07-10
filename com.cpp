@@ -45,13 +45,6 @@ void com::callBBB(){
 }
 
 void com::sendBBB(char *_message){
-    printf("You are connected to the server.\n Write your message and press 'Enter' to send it.\n Type 'quit' to exit the conversation.\n ");
-
-/*
- 	char buffer[256];
-	bzero(buffer,256);
-	fgets(buffer,255,stdin);
-*/
 
 	n = write(sockfd,_message,strlen(_message));
 	if (n < 0)
