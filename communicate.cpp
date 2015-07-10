@@ -6,6 +6,9 @@
  */
 
 #include "communicate.h"
+#include "com.h"
+
+com comLink;
 
 Communicate::Communicate(QWidget *parent)
     : QWidget(parent)
@@ -18,7 +21,7 @@ Communicate::Communicate(QWidget *parent)
   minus->setGeometry(50, 100, 75, 30);
 
   QPushButton *BBBconnect = new QPushButton("Connect",this);
-  BBBconnect->setGeometry(700,40,75,30);
+  BBBconnect->setGeometry(600,40,75,30);
 
   QPushButton *sendMSG = new QPushButton("Send",this);
   sendMSG->setGeometry(400,560,60,30);
@@ -28,7 +31,10 @@ Communicate::Communicate(QWidget *parent)
   dialog->show();
 
   IPbar = new QLineEdit("IP to BBB",this);
-  IPbar->setGeometry(500,40,200,30);
+  IPbar->setGeometry(450,40,100,30);
+
+  portBar = new QLineEdit("Port",this);
+  portBar->setGeometry(550,40,50,30);
 
   sender = new QLineEdit("Transmit Messages to the BBB",this);
   sender->setGeometry(10,560,380,30);
@@ -46,8 +52,13 @@ Communicate::Communicate(QWidget *parent)
 void Communicate::sendMsg()
 {
 	std::string str = sender->text().toUtf8().constData();
+	char *msg = new char[str.size()+1];
+	std::copy(str.begin(), str.end(),msg);
+	msg[str.size()] = '\0';
+	comLink.sendBBB(msg);
 	printf("Sending a message to BBB: ");
 	std::cout << str << std::endl;
+	delete[] msg;
 }
 
 void Communicate::OnPlus()
@@ -71,9 +82,19 @@ void Communicate::OnPeppu()
 
 void Communicate::OnConnect()
 {
-	std::string str2 = IPbar->text().toUtf8().constData();
-	printf("Connecting to Beaglebone on IP: ");
-	std::cout << str2 << std::endl;
+	std::string address = IPbar->text().toUtf8().constData();
+	int portNo = portBar->text().toInt();
 
+	char *add = new char[address.size()+1];
+	std::copy(address.begin(), address.end(),add);
+	add[address.size()] = '\0';
+
+	comLink.setAddress(add);	//should be a char *
+	comLink.setPort(portNo); 		//should be an int
+	comLink.callBBB();
+
+	printf("Connecting to Beaglebone on IP: ");
+	std::cout << address << std::endl;
+	delete[] add;
 }
 

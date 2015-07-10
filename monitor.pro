@@ -8,5 +8,5 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += communicate.h
-SOURCES += communicate.cpp main.cpp
+HEADERS += communicate.h com.h
+SOURCES += communicate.cpp com.cpp main.cpp

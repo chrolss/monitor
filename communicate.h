@@ -17,6 +17,7 @@
 #include "stdio.h"
 #include <string>
 #include <iostream>
+#include "com.h"
 
 class Communicate : public QWidget
 {
@@ -37,6 +38,7 @@ class Communicate : public QWidget
     QLabel *label;
     QLineEdit *IPbar;
     QLineEdit *sender;
+    QLineEdit *portBar;
 
 };
 

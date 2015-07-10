@@ -6,6 +6,7 @@
  */
 
 #include "communicate.h"
+#include "com.h"
 
 int main(int argc, char *argv[])
 {
