@@ -27,9 +27,14 @@ Communicate::Communicate(QWidget *parent)
   QPushButton *sendMSG = new QPushButton("Send",this);
   sendMSG->setGeometry(400,560,60,30);
 
-  QTextEdit *dialog = new QTextEdit("BBB Dialog Field",this);
-  dialog->setGeometry(10,350,380,200);
+  //QTextEdit *dialog = new QTextEdit("BBB Dialog Field",this);
+  //dialog->setGeometry(10,350,380,200);
+  //dialog->show();
+
+  dialog = new QTextEdit("BBB Dialog Field",this);
+  dialog->setGeometry(10,360,380,200);
   dialog->show();
+  dialog->setReadOnly(true);
 
   IPbar = new QLineEdit("IP to BBB",this);
   IPbar->setGeometry(450,40,100,30);
@@ -65,7 +70,13 @@ void Communicate::sendMsg()
 
 void Communicate::readMsg()
 {
-	printf("Here we read what the beaglebone has to say back \n");
+	// Here we read what the server/beaglebone has to say
+	char *trans = comLink.readBBB();
+	std::string sline(trans);
+	std::cout << sline << std::endl;
+	QString qstr = QString::fromStdString(sline);
+	QString old = dialog->toPlainText();
+	dialog->setPlainText(old + '\n' + qstr);
 }
 
 void Communicate::OnPlus()
@@ -100,7 +111,10 @@ void Communicate::OnConnect()
 	comLink.setPort(portNo); 		//should be an int
 	comLink.callBBB();
 
-	printf("Connecting to Beaglebone on IP: ");
+	contact = true;
+	printf("Connecting to Beaglebone on IP: %s", address.c_str());
+	QString Qadd = QString::fromStdString(address);
+	dialog->setPlainText("Connected to BBB on: " + Qadd);
 	std::cout << address << std::endl;
 	delete[] add;
 }

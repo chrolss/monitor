@@ -36,10 +36,12 @@ class Communicate : public QWidget
     void readMsg();
 
   private:
+    bool contact = false;
     QLabel *label;
     QLineEdit *IPbar;
     QLineEdit *sender;
     QLineEdit *portBar;
+    QTextEdit *dialog;
 
 };
 
