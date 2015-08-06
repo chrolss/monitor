@@ -33,6 +33,7 @@ class Communicate : public QWidget
     void OnPeppu();
     void OnConnect();
     void sendMsg();
+    void readMsg();
 
   private:
     QLabel *label;

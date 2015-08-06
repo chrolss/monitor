@@ -5,6 +5,9 @@
  *      Author: quad
  */
 
+// Server used is located in BeagleProjects/communication
+// The monitor project is always a client, never a server
+
 #include "communicate.h"
 #include "com.h"
 

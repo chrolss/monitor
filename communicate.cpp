@@ -59,6 +59,13 @@ void Communicate::sendMsg()
 	comLink.sendBBB(msg);
 	printf("Sending a message to BBB: %s \n", msg);
 	delete[] msg;
+	sender->clear();
+	readMsg();
+}
+
+void Communicate::readMsg()
+{
+	printf("Here we read what the beaglebone has to say back \n");
 }
 
 void Communicate::OnPlus()

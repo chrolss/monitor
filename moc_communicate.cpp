@@ -22,7 +22,7 @@ static const uint qt_meta_data_Communicate[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,6 +35,7 @@ static const uint qt_meta_data_Communicate[] = {
       32,   12,   12,   12, 0x08,
       42,   12,   12,   12, 0x08,
       54,   12,   12,   12, 0x08,
+      64,   12,   12,   12, 0x08,
 
        0        // eod
 };
@@ -42,6 +43,7 @@ static const uint qt_meta_data_Communicate[] = {
 static const char qt_meta_stringdata_Communicate[] = {
     "Communicate\0\0OnPlus()\0OnMinus()\0"
     "OnPeppu()\0OnConnect()\0sendMsg()\0"
+    "readMsg()\0"
 };
 
 void Communicate::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -55,6 +57,7 @@ void Communicate::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 2: _t->OnPeppu(); break;
         case 3: _t->OnConnect(); break;
         case 4: _t->sendMsg(); break;
+        case 5: _t->readMsg(); break;
         default: ;
         }
     }
@@ -93,9 +96,9 @@ int Communicate::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }
